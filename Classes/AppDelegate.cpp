@@ -53,7 +53,7 @@ AppDelegate::AppDelegate()
 	//behaviac::Workspace::GetInstance()->ExportMetas(expPath.c_str());
 #endif
 	//CCLOG("--->PATH:%s\n", path.c_str());
-	//path = path.append("/exported/");
+	//path = path.append("./exported/");
 
 	CCLOG("--->PATH:%s\n", path.c_str());
 	behaviac::Workspace::GetInstance()->SetFilePath(path.c_str());

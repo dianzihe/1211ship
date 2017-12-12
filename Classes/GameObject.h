@@ -64,7 +64,7 @@ public:
 
 	void setBrain(const char* bt)
 	{
-		log("-->setBrain:%s\n", bt);
+		log("------>setBrain:%s\n", bt);
 		bool bRet = this->btload(bt);
 		if (!bRet)
 			log("error in btload %s\n", bt);
