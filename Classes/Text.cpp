@@ -10,7 +10,8 @@ static std::string _GetLocaledTextFileFullPath( Language type )
 		filePath.append( postFix );
 	}
 	filePath.append( ".text" );
-	return CCFileUtils::sharedFileUtils()->fullPathFromRelativePath( filePath.c_str() );
+	//return CCFileUtils::getInstance()->fullPathFromRelativePath( filePath.c_str() );
+	return CCFileUtils::getInstance()->fullPathFromRelativeFile(filePath.c_str(), "");
 }
 
 bool _ReloadLocaledText()
@@ -45,7 +46,7 @@ CText* CText::Instance()
 
 bool CText::Init()
 {
-	unsigned long len = 0;
+	ssize_t len = 0;
 	char* data = (char*)CCFileUtils::sharedFileUtils()->getFileData( _GetLocaledTextFileFullPath( GetCurrentLanguage() ).c_str(), "rb", &len );
 	if ( !data ) {
 		return false;
@@ -65,7 +66,7 @@ bool CText::Init()
 			break;
 		char buf[1024] = {0};
 		memcpy(buf, &(data[off]), next - off);
-		string s(buf);
+		std::string s(buf);
 		m_textCache.push_back(s);
 		m_count++;
 		off = next + 1;

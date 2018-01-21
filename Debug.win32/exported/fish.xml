@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--EXPORTED BY TOOL, DON'T MODIFY IT!-->
+<!--Source File: fish.xml-->
+<behavior name="fish" agenttype="PlaneEnemy" version="5">
+  <node class="DecoratorAlwaysRunning" id="0">
+    <property DecorateWhenChildEnds="false" />
+    <node class="Parallel" id="1">
+      <property ChildFinishPolicy="CHILDFINISH_LOOP" />
+      <property ExitPolicy="EXIT_ABORT_RUNNINGSIBLINGS" />
+      <property FailurePolicy="FAIL_ON_ONE" />
+      <property SuccessPolicy="SUCCEED_ON_ALL" />
+      <node class="DecoratorAlwaysSuccess" id="2">
+        <property DecorateWhenChildEnds="false" />
+        <node class="Parallel" id="4">
+          <property ChildFinishPolicy="CHILDFINISH_LOOP" />
+          <property ExitPolicy="EXIT_ABORT_RUNNINGSIBLINGS" />
+          <property FailurePolicy="FAIL_ON_ONE" />
+          <property SuccessPolicy="SUCCEED_ON_ALL" />
+          <node class="Action" id="6">
+            <property Method="Self.PlaneEnemy::wander()" />
+            <property ResultOption="BT_RUNNING" />
+          </node>
+          <node class="Wait" id="7">
+            <property Time="const float 1000" />
+          </node>
+          <node class="Action" id="8">
+            <property Method="Self.PlaneEnemy::updatePosition()" />
+            <property ResultOption="BT_RUNNING" />
+          </node>
+          <node class="Action" id="9">
+            <property Method="Self.PlaneEnemy::boundaries()" />
+            <property ResultOption="BT_RUNNING" />
+          </node>
+        </node>
+      </node>
+      <node class="DecoratorAlwaysRunning" id="3">
+        <property DecorateWhenChildEnds="false" />
+        <node class="Action" id="5">
+          <property Method="Self.PlaneEnemy::avoid()" />
+          <property ResultOption="BT_RUNNING" />
+        </node>
+      </node>
+    </node>
+  </node>
+</behavior>

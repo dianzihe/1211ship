@@ -2,6 +2,8 @@
 
 #include "base.h"
 
+using namespace std;
+
 enum EnterMap_Fail_Type
 {
 	EnterMap_Fail_Invalid_Call = -1,//无效的操作

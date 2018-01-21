@@ -4,7 +4,7 @@
 
 #include "base.h"
 //#include "Singleton.h"
-
+#using namespace std;
 struct ObjectData
 {
 	//	Îï¼şID

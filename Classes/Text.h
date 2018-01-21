@@ -2,8 +2,10 @@
 #define __TEXT_H__
 
 #include "base.h"
+#include <string>
 
-typedef std::vector<string> TextCache;
+
+typedef std::vector<std::string> TextCache;
 
 class CText
 {
@@ -16,7 +18,7 @@ public:
 	bool Init();
 	void Uninit();
 
-	static string GetText(int id);
+	static std::string GetText(int id);
 private:
 	TextCache m_textCache;
 };

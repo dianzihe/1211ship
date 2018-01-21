@@ -1,20 +1,21 @@
 #pragma once
 
 #include "base.h"
-
+#include <string>
+#include <map>
 struct NpcData
 {
 	int id;						//id
-	string name;				//
-	string type;				//type
+	std::string name;				//
+	std::string type;				//type
 	int animation;			//¶¯»­ID
 	int icon;					//
-	string commonTalk;	//
+	std::string commonTalk;	//
 	int collectTime;			//
 	int cdTime;				//
 	int head;					//
 	int shopId;				//
-	string title;			//³ÆÎ½
+	std::string title;			//³ÆÎ½
 
 };
 
