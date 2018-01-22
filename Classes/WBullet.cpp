@@ -35,6 +35,7 @@ m_flyMode(E_FLYMODE_NORMAL)
 void WBullet::onEnter()
 {
     scheduleUpdate();  
+#if 0
     cwSngSprite::onEnter();
       
     
@@ -58,14 +59,13 @@ void WBullet::onEnter()
     {
         m_emitter=NULL;
     }
-    
-    
-    
+#endif 
 }
 
 void WBullet::onExit()
 {
-    unscheduleUpdate();  
+    unscheduleUpdate();
+#if 0
     if(m_emitter)
     {
         if(m_emitter->getParent())
@@ -76,6 +76,7 @@ void WBullet::onExit()
         m_emitter=NULL;
     }
     cwSngSprite::onExit();
+#endif
 }
 
 WBullet::~WBullet()
@@ -89,10 +90,9 @@ WBullet::~WBullet()
     }
 }
 
-void WBullet::draw(void)
-{
-    cwSngSprite::draw();
-    
+//void WBullet::draw(void)
+//{
+//    cwSngSprite::draw();  
 //    CCPoint p(getAnchorPointInPixels().x,getAnchorPointInPixels().y);
 //    p.x/=CC_CONTENT_SCALE_FACTOR();
 //    p.y/=CC_CONTENT_SCALE_FACTOR();
@@ -100,16 +100,16 @@ void WBullet::draw(void)
 //     ccDrawCircle(p,getMoverRadius()/(0.7*CC_CONTENT_SCALE_FACTOR()),360,20,false); 
 //    glColor4f(1.0f, 0, 0, 1.0f);
 //    ccDrawCircle(p,getExplodeRadius()/(0.7*CC_CONTENT_SCALE_FACTOR()),360,20,false); 
-}
+//}
 
 WBullet *WBullet::buildGuaiBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInterFace *lpGameFrontLayer,WGuai *lpGuai,*/int m_attack,int m_radius,bool isBigSkill)
 {
     WBullet *lpBullet=new WBullet();
     lpBullet->autorelease();
     
-    lpBullet->setGameFrontLayer(lpGameFrontLayer);
-    lpBullet->setHero(NULL);
-    lpBullet->setGuai(lpGuai);
+    //lpBullet->setGameFrontLayer(lpGameFrontLayer);
+    //lpBullet->setHero(NULL);
+    //lpBullet->setGuai(lpGuai);
     
     lpBullet->m_attack              =m_attack;
     lpBullet->m_ExplodeRadius=300;    
@@ -225,6 +225,7 @@ WBullet *WBullet::buildBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInterFace
 int WBullet::getHurt(int radiusm/*,WHero *pHero*/)
 {
     int hurt=0;
+#if 0
     int defend=pHero->getDefence()/2;
     
     if(m_attack<0) m_attack=0;
@@ -236,8 +237,6 @@ int WBullet::getHurt(int radiusm/*,WHero *pHero*/)
     {
         hurt=(int)(m_attack*0.1f);
     }
-  
-    
     
     if(radiusm < m_ExplodeRadius*0.3)
     {
@@ -251,7 +250,7 @@ int WBullet::getHurt(int radiusm/*,WHero *pHero*/)
     {
         hurt*=0.3;
     }
-    
+#endif    
 #if OPEN_STRONGLEN
     if(m_lpHero)
     {
@@ -291,7 +290,7 @@ void WBullet::calcHurt(Vec2 lastPositon)
     vector<int> hurtValue;
     
     int hurtcount=0;
-    
+#if 0    
     CCArray *pHeros=m_lpGameFrontLayer->getHeros();
   //  WHero *lpMyHero=WDDD_GLOBAL.m_lpBattleGlobal->myHero;
     
@@ -337,10 +336,6 @@ void WBullet::calcHurt(Vec2 lastPositon)
                     hurtcount++;
                     
                 }         
-                
-#if OPEN_FIFTH
-                lpHero->beShootedInWeaponSkill(m_lpHero);
-#endif
             }
             
             
@@ -405,18 +400,11 @@ void WBullet::calcHurt(Vec2 lastPositon)
             lpHurt->setPlayerIds(hurtPlayerIds);
             lpHurt->setHurtvalue(hurtValue);
             
-#if OPEN_FIFTH
-            if(m_lpHero->getWSSkillType_s()==WBWeaponSkill::E_WEAPONSKILL_TYPE_GETHURTTOBLOOD)
-            {
-                lpHurt->setHurtToBloodRate(m_lpHero->getWSGetHurtToBloodRate()*10000);
-            }
-#endif
-            
             WBSendProtocol(lpHurt);
         }
         
     }
-    
+#endif
 }
 
 
@@ -521,7 +509,7 @@ void WBullet::checkChangeToTrack()
     {
         return;
     }
-    
+#if 0
     float distanceMIN=INT32_MAX;
     float distance;
     WHero *nearHero=NULL;
@@ -568,12 +556,12 @@ void WBullet::checkChangeToTrack()
         m_target->playRepeat();
         getParent()->addChild(m_target);
     }
-
+#endif
 }
 
 bool WBullet::checkCollisionHero()
 {
-
+#if 0
     if(m_trackTime<DEF_WB_BEGIN_HERO_COLLSION_TIME) return false;
     
     CCArray *pHeros=m_lpGameFrontLayer->getHeros();
@@ -605,7 +593,7 @@ bool WBullet::checkCollisionHero()
             }
         }
     }
-  
+#endif  
     return false;
 }
 
@@ -616,7 +604,7 @@ void WBullet::checkCollision()
     bool isInSide;
     Vec2 newPosition(0,0);
     Vec2 tangent(0,0);
-    
+#if 0
     CCSize sceneSize=m_lpGameFrontLayer->getContentSizeInPixels();
    
    
@@ -635,16 +623,6 @@ void WBullet::checkCollision()
     
     int collsion=0;
 
-    
-#if (NOT_USE_STENCIL_SPRITE == 1)
-    if(m_lpGameFrontLayer->getPixelByte()->CheckCollision(this,&tempPosition,&tempTangent,isInSide))
-    {
-        newPosition+=tempPosition;
-        
-        collsion++;
-        
-    }
-#else
     if(m_lpGameFrontLayer->getStencilSprite()->CheckCollision(this,&tempPosition,&tempTangent,isInSide))
     {
         newPosition+=tempPosition;
@@ -652,7 +630,6 @@ void WBullet::checkCollision()
         collsion++;
         
     }
-#endif
     
     if(collsion<=0)
     {
@@ -839,6 +816,7 @@ void WBullet::checkCollision()
     setPositionInPixels(CCPointMake(getMoverPosition().x, getMoverPosition().y));
     if(m_emitter) m_emitter->setPosition(getPosition());
     setMoverAcceleration(Vec2(0,0));
+#endif
 }
 
 
@@ -852,6 +830,7 @@ void WBullet::update(float dt)
         m_trackTime++;
     }
     
+#if 0
     if(getAnimationStatus()==DEF_NORMAL)
     {
      
@@ -871,4 +850,5 @@ void WBullet::update(float dt)
             removeFromParentAndCleanup(true);
         }
     }
+#endif
 }

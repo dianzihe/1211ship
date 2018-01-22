@@ -27,12 +27,11 @@ public:
 	static WParticleSun * node()
 	{
 		WParticleSun *pRet = new WParticleSun();
-		if (pRet->init())
-		{
+		if (pRet->init()){
 			pRet->autorelease();
 			return pRet;
 		}
-		CC_SAFE_DELETE(pRet)
+		CC_SAFE_DELETE(pRet);
 		return NULL;
 	}
 };

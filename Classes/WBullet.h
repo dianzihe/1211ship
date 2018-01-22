@@ -52,7 +52,7 @@ class WBullet:public Sprite,public WMover
     int m_currentPositionIndex;		///< 当前的坐标索引
     int m_prePositionIndex;			///< 前一个索引
     
-    //int getHurt(int radius,WHero *pHero);///< 计算当前需要多少伤害
+    int getHurt(int radius/*,WHero *pHero*/);///< 计算当前需要多少伤害
     
     void calcHurt(Vec2 lastPositon);///< 计算伤害
     //virtual void draw(void);
