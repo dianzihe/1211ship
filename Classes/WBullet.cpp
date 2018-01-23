@@ -116,22 +116,45 @@ WBullet *WBullet::buildGuaiBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInter
     
     lpBullet->m_shootType=0;
     
-    
     //动画
-    if(!isBigSkill)
-    {
+	/*
+    if(!isBigSkill){
         lpBullet->addAnimationToDict(WBullet::DEF_NORMAL, lpGuai->getBulletAni());
-    }
-    else
-    {
+    }else{
         lpBullet->addAnimationToDict(WBullet::DEF_NORMAL, lpGuai->getBulletAniAngry());
     }
-    
+    */
 
-    lpBullet->addAnimationToDict(WBullet::DEF_EXPLODE, lpGuai->getBulletAniExplode());
-    
-  
-    
+    //lpBullet->addAnimationToDict(WBullet::DEF_EXPLODE, lpGuai->getBulletAniExplode());
+	std::string iwco_name = "battleEfficients";
+	/**
+	* @brief 找到武器对应的炮弹
+	*/
+	string weapon = "weapon20a";
+	map<string, string> bulletDesc;
+
+	bulletDesc.insert(pair<string, string>("weapon", weapon));
+
+	// 文件创建动画  
+	auto frameCache = SpriteFrameCache::getInstance();
+	frameCache->addSpriteFramesWithFile("weapon20c.wco", "weapon20c0.png");  // 增加动画plist和png文件  
+	SpriteFrame* frame = NULL;
+	Vector<SpriteFrame*> frameVec;
+	for (int i = 1; i <= 8; i++){
+		frame = frameCache->getSpriteFrameByName(StringUtils::format("s_%d.png", i));
+		frameVec.pushBack(frame);
+	}
+	/*
+	//使用的炮弹   
+	lpHero->m_BulletAni = cwSngAnimationPool::sharedAnimationPool()->animation(iwco_name, "fly1", bulletDesc);
+	lpHero->m_BulletAni->setDelay(0.1);
+	lpHero->m_BulletAni->retain();
+
+	Animation* anim;
+	anim = createAttackAnimFromColor(GemUtils::Fire, 20);
+	anim->setDelayPerUnit(0.05);
+	CCAnimationCache::sharedAnimationCache()->addAnimation(anim, GemUtils::attackAnim(GemUtils::Fire));
+
     lpBullet->setAnimation(WBullet::DEF_NORMAL);
     lpBullet->playRepeat();
     
@@ -144,14 +167,12 @@ WBullet *WBullet::buildGuaiBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInter
     lpBullet->setMoverCenter(center);
     lpBullet->setMoverRadius((lpBullet->getContentSizeInPixels().width)/2*0.5);
   
-    
-
     //重置开始位置
     lpBullet->setMoverPosition(Position);
     lpBullet->setMoverSpeed(speed);
     lpBullet->setPositionInPixels(CCPointMake(Position.x, Position.y));
     
-    
+    */
     return lpBullet;
 }
 
@@ -170,12 +191,10 @@ WBullet *WBullet::buildBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInterFace
     
     
     //动画
-    if(!isBigSkill)
-    {
+	/*
+    if(!isBigSkill){
         lpBullet->addAnimationToDict(WBullet::DEF_NORMAL, lpHero->getBulletAni());
-    }
-    else
-    {
+    }else{
         lpBullet->addAnimationToDict(WBullet::DEF_NORMAL, lpHero->getBulletAniAngry());
     }
     
@@ -217,7 +236,7 @@ WBullet *WBullet::buildBullet(Vec2 Position,Vec2 speed,/*GameFrontLayerInterFace
     lpBullet->setMoverSpeed(speed);
     lpBullet->setPositionInPixels(CCPointMake(Position.x, Position.y));
     
-    
+    */
     return lpBullet;
 }
 

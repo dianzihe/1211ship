@@ -180,6 +180,22 @@ bool GameScene::init()
 	//ws->fdsafdsafd;
 	ws->spawnEnemy(1);
 
+	// 文件创建动画  
+	auto frameCache = SpriteFrameCache::getInstance();
+	frameCache->addSpriteFramesWithFile("weapon20c.wco", "weapon20c0.png");  // 增加动画plist和png文件  
+	SpriteFrame* frame = NULL;
+	Vector<SpriteFrame*> frameVec;
+	for (int i = 1; i <= 8; i++){
+		frame = frameCache->getSpriteFrameByName(StringUtils::format("s_%d.png", i));
+		frameVec.pushBack(frame);
+	}
+	auto animation2 = Animation::createWithSpriteFrames(frameVec, 0.1, -1);  // 参数动画队列，动画每帧间隔，动画执行次数  
+	auto action2 = Animate::create(animation2);
+	auto sp1 = cocos2d::Sprite::create();
+	sp1->setPosition(Vec2(100, 100));
+	this->addChild(sp1);
+	sp1->runAction(RepeatForever::create(action2));
+
 	//m_NPC = new NPC();
 	//m_NPC->setParent(this);
 	//m_NPC->spawnEnemy();
