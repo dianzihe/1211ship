@@ -229,25 +229,22 @@ USE_WYD_IOS_SDK == USE_SDK_TYPE)
 //////////////////////////////////////////////////////////////////////////
 
 //强化宏定义
-#define OPEN_STRONGLEN 1
-
+#define OPEN_STRONGLEN 0
 //四期功能宏定义
-#define OPEN_FOURTH 1
+#define OPEN_FOURTH 0
 //五期功能宏定义
-#define OPEN_FIFTH 1
+#define OPEN_FIFTH 0
 //六期功能宏定义
-#define OPEN_SIXTH 1
-
+#define OPEN_SIXTH 0
 //八期功能宏定义
-#define OPEN_EIGHTH 1
-
+#define OPEN_EIGHTH 0
 //九期功能宏定义
-#define OPEN_NINTH 1
+#define OPEN_NINTH 0
 
 //副本4宏定义
-#define OPEN_BOSS4 1
+#define OPEN_BOSS4 0
 
-#define OPEN_NEWTEACH 1
+#define OPEN_NEWTEACH 0
 #define OPEN_DEBUGSPEED 0
 
 #define NOT_USE_STENCIL_SPRITE 1

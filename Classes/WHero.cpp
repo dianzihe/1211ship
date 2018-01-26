@@ -1,5 +1,6 @@
 #include "WHero.h"
 #include "WBullet.h"
+#include "WFadeOutHurtLabel.h"
 //#include "animation.h"
 //#include "GameFrontLayer.h"
 //#include "ddd_global.h"
@@ -172,7 +173,7 @@ m_lpWeaponSkillEffect(NULL)
     
     setScale(0.7f);
     
-    st_shoot_speed.Set(0, 0);
+    //st_shoot_speed.Set(0, 0);
     
 #if OPEN_FIFTH
     m_weaponSkills=CCArray::array();
@@ -348,6 +349,7 @@ void WHero::buildAiCombination()
 
 void WHero::getCircleImg(const string &path,Image **pCircle,Image **pCircleMark)
 {
+#if 0
     CCImage *pImg=new CCImage();
     if(!pImg->initWithImageFile(path.c_str(),pImg->kFmtPng,true))
     {
@@ -370,8 +372,8 @@ void WHero::getCircleImg(const string &path,Image **pCircle,Image **pCircleMark)
         
         lpCircleBuf=new int[rectWidth*rectHeight];
         memset(lpCircleBuf, 0, rectWidth*rectHeight*4);
-        Image::Rect rect;
-        
+        Rect rect;
+
         rect.x=0;
         rect.y=0;
         rect.w=rectWidth;
@@ -431,6 +433,7 @@ void WHero::getCircleImg(const string &path,Image **pCircle,Image **pCircleMark)
     }
     
     DeleteObject(pImg);
+#endif
 }
 
 
@@ -474,7 +477,20 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     //移动
     WAnimationManager::addAnimationToCharater(iwco_name, "move", lpHero, WHero::DEF_MOVE, desc,0.2,true);
  
-    
+
+		directions = [(0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (1, 1)]
+		for dc in xrange(len(directions)) :
+			d = directions[dc]
+			for i in xrange(11) :
+				if i == 10 :
+					key = ("idle", d)
+				else :
+				key = (i, d)
+				t = self.bigtexture.sub(32 * i, (256 - 32) - 32 * dc, 32, 32)
+				#print 32 * i, (512 - 32) - 32 * dc
+				self.images[key] = t
+
+
     
     CCPoolManager::getInstance()->pop();
     
@@ -735,6 +751,8 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     return lpHero;
 }
 
+
+#if 0
 void WHero::draw()
 {
     
@@ -828,7 +846,7 @@ void WHero::draw()
     
     
 }
-
+#endif
 
 void WHero::PropertyRoundClear()
 {
@@ -856,7 +874,7 @@ void WHero::PropertyRoundClear()
         m_currentUsedItems->release();
         m_currentUsedItems=NULL;
     }
-    
+#if 0    
     if(m_pAngryFire)
     {
         if(m_pAngryFire->getIsVisible())
@@ -865,6 +883,7 @@ void WHero::PropertyRoundClear()
             m_pAngryFire->stopPlay();
         }
     }
+#endif
 }
 
 void WHero::SendMsgNormal()
@@ -1903,7 +1922,9 @@ void WHero::SendMsgReborn(const Vec2 &position)
     
     
 }
-
+int WHero::getAnimationStatus(){
+	return DEF_NORMAL;
+}
 void WHero::st_normal()
 {
     if(getAnimationStatus()==DEF_NORMAL)
@@ -1943,6 +1964,7 @@ void WHero::st_normal()
 
 void WHero::ShowSpecialEffect(int effect)
 {
+#if 0
     if(getIsFreeze()) return;//如果是在冻动状态下,不能播放其他特效
     
     switch (effect) 
@@ -1998,6 +2020,7 @@ void WHero::ShowSpecialEffect(int effect)
         default:
             break;
     }
+#endif
 }
 void WHero::setAnimation(int dwAniID){
 }
@@ -2575,6 +2598,7 @@ void WHero::st_fly()
 
 void WHero::st_flash()
 {
+#if 0
     if(m_blink && m_blink->isDone())
     {
         CC_SAFE_RELEASE_NULL(m_blink);
@@ -2584,11 +2608,13 @@ void WHero::st_flash()
         m_lpGameFrontLayer->SendMsgNextRound();
         m_lpGameFrontLayer->EndCurrentMsg();
     }      
+#endif
 }
 
 
 void WHero::onStartBigSkillShoot()
 {
+#if 0
     setAnimation(DEF_SHOOT_BIG_START);
     playOnce();
     
@@ -2596,6 +2622,7 @@ void WHero::onStartBigSkillShoot()
     {
         getGameFrontLayer()->getBattleScene()->getColorLayer()->setIsVisible(true);
     }
+#endif
 }
 
 
@@ -2657,7 +2684,7 @@ void WHero::ProcessStatus()
         m_WSSpecial->setPositionInPixels(getAnchorPointInPixels());
     }
 #endif
-    
+#if 0
     if(m_lpSpecialEffect)
     {
         if(m_lpSpecialEffect->getIsVisible() && m_lpSpecialEffect->isCurrentAnimationDone())
@@ -2734,10 +2761,12 @@ void WHero::ProcessStatus()
             if(m_currentWBEvent)m_currentWBEvent->End();
         }
     }
+#endif
 }
 
 void WHero::checkCollisionInFly()
 {
+#if 0
     Vec2 tempPosition;
     Vec2 tempTangent;
     bool isInSide;
@@ -2865,12 +2894,13 @@ void WHero::checkCollisionInFly()
     setPositionInPixels(CCPointMake(getMoverPosition().x, getMoverPosition().y));
   
     setMoverAcceleration(Vec2(0,0));
+#endif
 }
 
 
 void WHero::checkCollision()
 {
-  
+#if 0
     Vec2 tempPosition;
     Vec2 tempTangent;
     bool isInSide;
@@ -2970,6 +3000,7 @@ void WHero::checkCollision()
     
     setPositionInPixels(CCPointMake(getMoverPosition().x, getMoverPosition().y));
     setMoverAcceleration(Vec2(0,0));
+#endif
 }
 
 

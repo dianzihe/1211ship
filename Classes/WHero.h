@@ -284,6 +284,7 @@ public:
 	void playRepeat();
 	boolean isCurrentAnimationDone();
 	void playOnce();
+	int getAnimationStatus();
     /**
      * @brief 清理事件队列
      */
