@@ -103,7 +103,7 @@ private:
 	void initEnemyBlowUpFrames(int planetype); //加载爆炸纹理图集
 	void moveOn(float dt); //schedule回调，每dt秒移动一段距离
 	void blowUp(); //飞机爆炸
-    
+	void shoot();
 private:
 	//int m_velocity; //战机速度
 	int m_life; //战机当前生命

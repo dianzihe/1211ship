@@ -8,7 +8,10 @@
 
 #ifndef dandandao_WAnimationManager_h
 #define dandandao_WAnimationManager_h
-
+#include <string>
+using namespace std;
+#include "cocos2d.h"
+using namespace cocos2d;
 #define WANI_IWCO_BATTLEBOY        "battleBoy"
 #define WANI_IWCO_BATTLEGIRL       "battleGirl"
 #define WANI_IWCO_BATTLEEFFECT  "battleEffect"
@@ -43,9 +46,17 @@ public:
     /**
      * @brief 根据数据表生成管理列表
      */
-     static void BuildIWcoManagerList();
+	static void BuildIWcoManagerList();
     
     static void BuildIWcoManagerListInLoading();
+	static void addAnimationToCharater(const string &iwconame,
+		const string &animationName,
+		Sprite *pChara,
+		int animationId,
+		map<string, string> desc,
+		float aniDelay = 0.2,
+		bool filter = false){};
+
 };
 
 #endif

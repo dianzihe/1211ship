@@ -311,3 +311,5 @@ void PlaneEnemy::avoid(){
 void PlaneEnemy::mate(){
 	printf("mate \n");
 }
+void PlaneEnemy::shoot(){
+}

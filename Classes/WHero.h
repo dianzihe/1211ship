@@ -49,7 +49,13 @@ public:
 
 class WHero:public Sprite,public WMover
 {
-  
+	map<int, Animation *> *m_lpAnimationDict;  ///<动作集
+	CC_SYNTHESIZE(int, m_animationStatus, AnimationStatus); ///<动画状态
+	CC_SYNTHESIZE(bool, m_isShowAchorPoint, IsShowAchorPoint);
+private:
+	Animation *m_lpCurrentAnimationNode;  ///< 当前使用的动画
+	CCAction *m_lpCurrentAnimationAction; ///< 当前使用的动画动作
+
     CC_SYNTHESIZE(bool, m_loseNet,LoseNet);//玩家已经掉线
    
     float m_dt; //时间保存,方便读取
@@ -192,7 +198,7 @@ class WHero:public Sprite,public WMover
     ///@brief ai控制id
     CC_SYNTHESIZE(int, m_aiCtrlId, AiCtrlId)
     CC_SYNTHESIZE(bool, m_useItem, UseItem) //是不是使用道具
-    CC_SYNTHESIZE_PASS_BY_REF(CAICombination, m_AICombination,AICombination);//道具使用组合
+    //CC_SYNTHESIZE_PASS_BY_REF(CAICombination, m_AICombination,AICombination);//道具使用组合
     
     CC_SYNTHESIZE(CCArray *,m_currentUsedItems,CurrentUsedItems); ///< 当前使用的道具
 
