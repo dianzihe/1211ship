@@ -7,11 +7,12 @@ using namespace CocosDenshion;
 
 PlaneEnemy::PlaneEnemy(){
 }
-/*
-PlaneEnemyPtr PlaneEnemy::createWithEnemyType(int planetype)
+
+PlaneEnemy* PlaneEnemy::createWithEnemyType(int planetype)
 {
+	/*
 	//自定义一个工厂方法，根据传入的战机类型，初始化敌方战机
-	PlaneEnemy *a = new PlaneEnemy(1);
+	PlaneEnemy *a = new PlaneEnemy();
 	PlaneEnemyPtr plane(new PlaneEnemy());
 	if (plane && plane->init(planetype))
 	{
@@ -19,14 +20,27 @@ PlaneEnemyPtr PlaneEnemy::createWithEnemyType(int planetype)
 		return plane;
 	}
 	return plane;
+	*/
+	//自定义一个工厂方法，根据传入的战机类型，初始化敌方战机
+	auto plane = new PlaneEnemy();
+	if (plane && plane->init(planetype))
+	{
+		plane->autorelease();
+		return plane;
+	}
+	else
+	{
+		CC_SAFE_DELETE(plane);
+		return nullptr;
+	}
 }
-*/
+
 /*
 敌机数据初始化
 */
 bool PlaneEnemy::init(int planetype)
 {
-	//Sprite::init();
+	Sprite::init();
 	m_planeType = planetype;
 	m_live = true;
 	
@@ -60,7 +74,7 @@ bool PlaneEnemy::init(int planetype)
 		break;
 	}
 	
-	this->root = setSprite(framename.getCString());
+	//this->root = setSprite(framename.getCString());
 	this->root->setAnchorPoint(Vec2(0.5f, 0.5f));
 	this->root->retain();
 

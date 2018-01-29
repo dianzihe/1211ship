@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "PlaneEnemy.h"
 #include "GameScene.h"
+#include "enemy.h"
 //#include "behaviac.h"
 //#include "Projectile.h"
 //#include "util.h"
@@ -474,15 +475,22 @@ void WorldState::loadlevel(int level)
 	////根据战机类型加入战机
 	//PlaneEnemy* enemy_plane = enemy->getPlane();
 	//PlaneEnemyPtr enemy_plane = PlaneEnemy::createWithEnemyType(enemy_type);
+	auto enemy = behaviac::Agent::Create<Enemy>();
+	enemy->createAnEnemyWithType(enemy_type);
+	////根据战机类型加入战机
+	PlaneEnemy* enemy_plane = enemy->getPlane();
+	((Node*)this->getParent())->addChild(enemy_plane, 0, GameScene::ENEMY_TAG);
 
+	//设定战机初始位置的X轴的取值范围，根据这个范围随机设置战机初始X轴位置
+	enemy_plane->setPosition();
+
+	/* 0129 ok
 	PlaneEnemy* p = behaviac::Agent::Create<PlaneEnemy>();
 	p->init(enemy_type);
 	p->SetIdFlag(kIdMask_Projectile);
-
 	p->setBrain("fish");
-
 	((Node*)this->getParent())->addChild(p->root, 0, GameScene::ENEMY_TAG);
-
+	*/
 	//behaviac::Agent::Destroy(enemy);
 
 	//enemy->SetActive(false);

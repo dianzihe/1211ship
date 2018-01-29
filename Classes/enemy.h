@@ -1,11 +1,12 @@
 #pragma once
+
 #include "behaviac/agent/agent.h"
 #include "behaviac/agent/registermacros.h"
 #include "cocos2d.h"
+
 USING_NS_CC;
 class PlaneEnemy;
-class Enemy :
-    public behaviac::Agent
+class Enemy : public behaviac::Agent
 {
 public:
 	BEHAVIAC_DECLARE_AGENTTYPE(Enemy, behaviac::Agent);

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<meta>
+  <types>
+    <enumtype Type="ETest" Namespace="" DisplayName="ETest" Desc="">
+      <enum NativeValue="EA" Value="EA" DisplayName="EA" Desc="" MemberValue="-1" />
+      <enum NativeValue="EB" Value="EB" DisplayName="EB" Desc="" MemberValue="-1" />
+      <enum NativeValue="EC" Value="EC" DisplayName="EC" Desc="" MemberValue="-1" />
+    </enumtype>
+    <struct Type="IList" Namespace="" Base="" IsImplemented="true" DisplayName="IList" Desc="" />
+    <struct Type="System::Object" Namespace="System" Base="" IsImplemented="true" DisplayName="Object" Desc="" />
+    <struct Type="StructTest" Namespace="" Base="" DisplayName="StructTest" Desc="">
+      <Member Name="a" DisplayName="a" Desc="a" Type="bool" TypeFullName="System.Boolean" Class="StructTest" Public="true" />
+    </struct>
+  </types>
+  <agents>
+    <agent classfullname="behaviac::Agent" DisplayName="behaviac::Agent" Desc="behaviac::Agent" IsRefType="true" IsImplemented="true">
+      <Method Name="VectorLength" DisplayName="VectorLength" Desc="VectorLength" Class="behaviac::Agent" ReturnType="int" ReturnTypeFullName="System.Int32" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="VectorAdd" DisplayName="VectorAdd" Desc="VectorAdd" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorRemove" DisplayName="VectorRemove" Desc="VectorRemove" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorContains" DisplayName="VectorContains" Desc="VectorContains" Class="behaviac::Agent" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+        <Param Name="param1" Type="const System::Object&amp;" TypeFullName="System.Object" DisplayName="param1" Desc="param1" />
+      </Method>
+      <Method Name="VectorClear" DisplayName="VectorClear" Desc="VectorClear" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="IList&amp;" TypeFullName="System.Collections.IList" DisplayName="param0" Desc="param0" />
+      </Method>
+      <Method Name="LogMessage" DisplayName="LogMessage" Desc="LogMessage" Class="behaviac::Agent" ReturnType="void" ReturnTypeFullName="System.Void" Static="true" Public="true" istask="false">
+        <Param Name="param0" Type="const char*" TypeFullName="System.String" DisplayName="param0" Desc="param0" />
+      </Method>
+    </agent>
+    <agent classfullname="Enemy" base="behaviac::Agent" DisplayName="Enemy" Desc="Enemy" IsRefType="true" IsImplemented="true">
+      <Member Name="enemyType" DisplayName="enemyType" Desc="enemy's type" Class="Enemy" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="true" Readonly="false" />
+      <Member Name="m_init_speed" DisplayName="m_init_speed" Desc="init enemy plane speed" Class="Enemy" Type="vector&lt;float&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Single, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="4:50|50|100|150" Static="false" Public="true" Readonly="false" />
+      <Member Name="initSpeed" DisplayName="initSpeed" Desc="init enemy speed" Class="Enemy" Type="float" TypeFullName="System.Single" defaultvalue="0" Static="false" Public="true" Readonly="false" />
+      <Member Name="randomSpeed" DisplayName="randomSpeed" Desc="randomSpeed" Class="Enemy" Type="float" TypeFullName="System.Single" defaultvalue="50" Static="false" Public="true" Readonly="false" />
+      <Method Name="getSpeed" DisplayName="getSpeed" Desc="getSpeed" Class="Enemy" ReturnType="float" ReturnTypeFullName="System.Single" Static="false" Public="false" istask="false" />
+      <Method Name="getEnemyType" DisplayName="getEnemyType" Desc="getEnemyType" Class="Enemy" ReturnType="int" ReturnTypeFullName="System.Int32" Static="false" Public="false" istask="false" />
+      <Method Name="isAlive" DisplayName="isAlive" Desc="isAlive" Class="Enemy" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="false" istask="false" />
+      <Method Name="setSpeed" DisplayName="setSpeed" Desc="setSpeed" Class="Enemy" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false">
+        <Param Name="param0" Type="float" TypeFullName="System.Single" DisplayName="speed" Desc="speed" />
+      </Method>
+      <Method Name="getRandomSpeedByInitSpeed" DisplayName="getRandomSpeedByInitSpeed" Desc="getRandomSpeedByInitSpeed" Class="Enemy" ReturnType="float" ReturnTypeFullName="System.Single" Static="false" Public="false" istask="false">
+        <Param Name="param0" Type="float" TypeFullName="System.Single" DisplayName="iniSpeed" Desc="iniSpeed" />
+      </Method>
+    </agent>
+    <agent classfullname="Hero" base="behaviac::Agent" DisplayName="Hero" Desc="Hero" IsRefType="true" IsImplemented="true">
+      <Member Name="m_isAI" DisplayName="m_isAI" Desc="m_isAI" Class="Hero" Type="bool" TypeFullName="System.Boolean" defaultvalue="false" Static="false" Public="false" Readonly="false" />
+      <Method Name="findAnNearestEnemy" DisplayName="findAnNearestEnemy" Desc="findAnNearestEnemy" Class="Hero" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false" />
+      <Method Name="isWillBeCrashOnNearestEnemy" DisplayName="isWillBeCrashOnNearestEnemy" Desc="isWillBeCrashOnNearestEnemy" Class="Hero" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="false" istask="false" />
+      <Method Name="EscapeEnemyCrash" DisplayName="EscapeEnemyCrash" Desc="EscapeEnemyCrash" Class="Hero" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false" />
+      <Method Name="hasEnemyInFrontCanAttack" DisplayName="hasEnemyInFrontCanAttack" Desc="hasEnemyInFrontCanAttack" Class="Hero" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="false" istask="false" />
+      <Method Name="findAnEnemyAndAttack" DisplayName="findAnEnemyAndAttack" Desc="findAnEnemyAndAttack" Class="Hero" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false" />
+      <Method Name="AdjustHeroPosition" DisplayName="AdjustHeroPosition" Desc="AdjustHeroPosition" Class="Hero" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false" />
+      <Method Name="wait20Frame" DisplayName="wait20Frame" Desc="wait20Frame" Class="Hero" ReturnType="bool" ReturnTypeFullName="System.Boolean" Static="false" Public="false" istask="false" />
+    </agent>
+    <agent classfullname="NPC" base="behaviac::Agent" DisplayName="NPC" Desc="NPC" IsRefType="true" IsImplemented="true">
+      <Member Name="Level1Up_Score" DisplayName="Level1Up_Score" Desc="Level1Up_Score" Class="NPC" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="Level2Up_Score" DisplayName="Level2Up_Score" Desc="Level2Up_Score" Class="NPC" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="Level3Up_Score" DisplayName="Level3Up_Score" Desc="Level3Up_Score" Class="NPC" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="Level4Up_Score" DisplayName="Level4Up_Score" Desc="Level4Up_Score" Class="NPC" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="m_canBossRefresh" DisplayName="m_canBossRefresh" Desc="m_canBossRefresh" Class="NPC" Type="bool" TypeFullName="System.Boolean" defaultvalue="false" Static="false" Public="false" Readonly="false" />
+      <Member Name="m_level" DisplayName="m_level" Desc="m_level" Class="NPC" Type="int" TypeFullName="System.Int32" defaultvalue="0" Static="false" Public="false" Readonly="false" />
+      <Member Name="delayTime" DisplayName="delayTime" Desc="deley frame" Class="NPC" Type="vector&lt;int&gt;" TypeFullName="System.Collections.Generic.List`1[[System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]" defaultvalue="5:20|15|10|5|2" Static="false" Public="true" Readonly="false" />
+      <Method Name="getLevel" DisplayName="getLevel" Desc="getLevel" Class="NPC" ReturnType="int" ReturnTypeFullName="System.Int32" Static="false" Public="false" istask="false">
+        <Param Name="param0" Type="int" TypeFullName="System.Int32" DisplayName="score" Desc="score" />
+      </Method>
+      <Method Name="setLeveUpScore" DisplayName="setLeveUpScore" Desc="setLeveUpScore" Class="NPC" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false">
+        <Param Name="param0" Type="int" TypeFullName="System.Int32" DisplayName="level" Desc="level" />
+        <Param Name="param1" Type="int" TypeFullName="System.Int32" DisplayName="score" Desc="score" />
+      </Method>
+      <Method Name="spawnEnemy" DisplayName="spawnEnemy" Desc="spawnEnemy" Class="NPC" ReturnType="void" ReturnTypeFullName="System.Void" Static="false" Public="false" istask="false" />
+    </agent>
+  </agents>
+  <instances />
+</meta>

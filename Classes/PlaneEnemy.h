@@ -23,10 +23,10 @@ const double BITE = .1;
 //const static int kCOL_WIDTH = 540;
 //const static int kCOL_HEIGHT = 960;
 
-class PlaneEnemy :public std::enable_shared_from_this<PlaneEnemy>, public GameObject
+class PlaneEnemy : public Sprite
 {
 public:
-	DECLARE_BEHAVIAC_OBJECT(PlaneEnemy, GameObject);
+	//DECLARE_BEHAVIAC_OBJECT(PlaneEnemy, GameObject);
 
 	enum EnemyPlaneType
 	{
@@ -60,12 +60,12 @@ public:
 		Enemy4_Points = 80
 	}; //战机分数
 
-//    Enemy* myAgent;
+    Enemy* myAgent;
 	Sprite* root;
 public:
 	//自定义工厂方法，由于enemy有很多种，根据enemy的类型初始化，在init里面进行初始化
 	PlaneEnemy();
-	//static PlaneEnemyPtr createWithEnemyType(int planetype);
+	static PlaneEnemy* createWithEnemyType(int planetype);
 	
 	bool init(int planetype);
 

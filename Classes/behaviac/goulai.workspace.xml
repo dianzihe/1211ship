@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<workspace name="goulai" folder="behaviors" export="exported" language="cpp" version="3">
+  <export>
+    <cs>
+      <isexported>False</isexported>
+      <exportfilecount>1</exportfilecount>
+    </cs>
+    <cpp>
+      <isexported>True</isexported>
+      <exportfilecount>1</exportfilecount>
+      <folder>../exported</folder>
+    </cpp>
+  </export>
+</workspace>

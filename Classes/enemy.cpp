@@ -6,10 +6,10 @@ USING_NS_CC;
 
 Enemy::Enemy()
 {
-    this->btload("enemy_fsm");
-    this->btsetcurrent("enemy_fsm");
-    //this->btload("enemy");
-    //this->btsetcurrent("enemy");
+    //this->btload("enemy_fsm");
+    //this->btsetcurrent("enemy_fsm");
+    this->btload("enemy");
+    this->btsetcurrent("enemy");
 	initSpeed = 20.0f;
 	m_init_speed[0] = 50;
 	m_init_speed[1] = 50;
@@ -24,8 +24,8 @@ Enemy::~Enemy()
 //create an enemy with type
 void Enemy::createAnEnemyWithType(int type)
 {
-//    m_plane = PlaneEnemy::createWithEnemyType(type);
-//    m_plane->myAgent = this;
+    m_plane = PlaneEnemy::createWithEnemyType(type);
+    m_plane->myAgent = this;
 }
 
 PlaneEnemy* Enemy::getPlane()
@@ -79,13 +79,9 @@ void Enemy::init()
 
 bool Enemy::isAlive()
 {
-    if (this->m_plane)
-    {
+    if (this->m_plane){
         return true;
-    }
-    else
-    {
-        
+    }else{
         //if the enemy is dead, then add this agent's behaviac to GanmeScene's agent delete queue.
         GameScene::addBehaviacAgentDeleteQueue((behaviac::Agent*)this);
         return false;
