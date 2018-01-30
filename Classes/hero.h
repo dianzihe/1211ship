@@ -21,7 +21,7 @@ public:
     void EscapeEnemyCrash();
     bool hasEnemyInFrontCanAttack();
     void findAnEnemyAndAttack();
-	void AdjustHeroPosition(Node* hero);
+	void AdjustHeroPosition(Node* hero = NULL);
 	Node* getNearestEnemy(Point position);
 	Node* getNearestEnemy();
 	bool isWillBeCrashEnemy(Node* enemy, Point position);

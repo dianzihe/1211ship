@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<workspace name="goulai" folder="behaviors" export="exported" language="cpp" version="3">
+<workspace name="goulai" folder="behaviors" export="..\..\Resources\exported" language="cpp" version="3">
   <export>
     <cs>
       <isexported>False</isexported>
@@ -9,6 +9,11 @@
       <isexported>True</isexported>
       <exportfilecount>1</exportfilecount>
       <folder>../exported</folder>
+      <includedfilenames>
+        <includedfilename>../../enemy.h</includedfilename>
+        <includedfilename>../../hero.h</includedfilename>
+        <includedfilename>../../NPC.h</includedfilename>
+      </includedfilenames>
     </cpp>
   </export>
 </workspace>

@@ -19,7 +19,6 @@ namespace behaviac
 		virtual void RegisterBehaviorsImplement()
 		{
 			Workspace::GetInstance()->RegisterBehaviorTreeCreator("enemy", bt_enemy::Create);
-			Workspace::GetInstance()->RegisterBehaviorTreeCreator("enemy_fsm", bt_enemy_fsm::Create);
 			Workspace::GetInstance()->RegisterBehaviorTreeCreator("hero", bt_hero::Create);
 			Workspace::GetInstance()->RegisterBehaviorTreeCreator("npc", bt_npc::Create);
 		}

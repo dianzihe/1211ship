@@ -482,7 +482,7 @@ void WorldState::loadlevel(int level)
 	((Node*)this->getParent())->addChild(enemy_plane, 0, GameScene::ENEMY_TAG);
 
 	//设定战机初始位置的X轴的取值范围，根据这个范围随机设置战机初始X轴位置
-	enemy_plane->setPosition();
+	enemy_plane->setPosition(300, 400);
 
 	/* 0129 ok
 	PlaneEnemy* p = behaviac::Agent::Create<PlaneEnemy>();
@@ -500,14 +500,14 @@ void WorldState::loadlevel(int level)
 	//((Node*)this->getParent())->addChild(enemy_plane, 0, GameScene::ENEMY_TAG);
 
 	//设定战机初始位置的X轴的取值范围，根据这个范围随机设置战机初始X轴位置
-	int min = p->root->getContentSize().width / 2;
-	int max = winSize.width - p->root->getContentSize().width / 2;
-	log("[%d, %d] x=%d y=%d", min, max, random(min, max), winSize.height + p->root->getContentSize().height / 2);
-	log("winsize [%d, %d]  content size [%d, %d]", winSize.width, winSize.height, p->root->getContentSize().width, p->root->getContentSize().height);
-	p->root->setPosition(Vec2(random(min, max), winSize.height + p->root->getContentSize().height / 2));
-	//enemy_plane->root->setPosition(Vec2(300, 400));
+	//int min = p->root->getContentSize().width / 2;
+	//int max = winSize.width - p->root->getContentSize().width / 2;
+	//log("[%d, %d] x=%d y=%d", min, max, random(min, max), winSize.height + p->root->getContentSize().height / 2);
+	//log("winsize [%d, %d]  content size [%d, %d]", winSize.width, winSize.height, p->root->getContentSize().width, p->root->getContentSize().height);
+	//p->root->setPosition(Vec2(random(min, max), winSize.height + p->root->getContentSize().height / 2));
+	enemy_plane->setPosition(Vec2(300, 400));
 
-	insertObject(p, Vec2(0, 0));
+	//insertObject(p, Vec2(0, 0));
 
 	//给敌机一个body
 	Vec2 vec[10]; //存放敌方战机的多边形点
@@ -543,7 +543,8 @@ void WorldState::loadlevel(int level)
 	enemybody->addShape(PhysicsShapePolygon::create(vec, vec_count));
 	enemybody->setCollisionBitmask(0x0); //不进行碰撞模拟，因为不需要
 	enemybody->setContactTestBitmask(GameScene::ENEMY_CONTACTMASKBIT);
-	p->root->setPhysicsBody(enemybody);
+	//p->root->setPhysicsBody(enemybody);
+	enemy_plane->setPhysicsBody(enemybody);
 #if 0
 	WorldState* state = (WorldState*)behaviac::Agent::GetInstance<WorldState>();
 

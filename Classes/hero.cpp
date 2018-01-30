@@ -281,7 +281,7 @@ Node* Hero::getNearestEnemy(Point position)//get the nearest enemy
 	return NULL;
 }
 
-void Hero::AdjustHeroPosition(Node* hero = NULL)
+void Hero::AdjustHeroPosition(Node* hero )
 {
 	/*
 	if (hero == NULL)

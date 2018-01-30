@@ -68,19 +68,20 @@ void NPC::spawnEnemy()
         break;
     }
 
-//    auto enemy = behaviac::Agent::Create<Enemy>();
-//    enemy->createAnEnemyWithType(enemy_type);
-    ////根据战机类型加入战机
-    //PlaneEnemy* enemy_plane = enemy->getPlane();
+    auto enemy = behaviac::Agent::Create<Enemy>();
+    enemy->createAnEnemyWithType(enemy_type);
+    //根据战机类型加入战机
+    PlaneEnemy* enemy_plane = enemy->getPlane();
 	//PlaneEnemyPtr enemy_plane = PlaneEnemy::createWithEnemyType(enemy_type);
-    
+	((Node*)this->getParent())->addChild(enemy_plane, 0, GameScene::ENEMY_TAG);
+
+	/*
 	PlaneEnemy* p = behaviac::Agent::Create<PlaneEnemy>();
 	p->init(enemy_type);
 	p->SetIdFlag(kIdMask_Projectile);
-
 	p->setBrain("fish");
-
 	((Node*)this->getParent())->addChild(p->root, 0, GameScene::ENEMY_TAG);
+	*/
 
     //behaviac::Agent::Destroy(enemy);
 
@@ -91,12 +92,12 @@ void NPC::spawnEnemy()
     //((Node*)this->getParent())->addChild(enemy_plane, 0, GameScene::ENEMY_TAG);
 
     //设定战机初始位置的X轴的取值范围，根据这个范围随机设置战机初始X轴位置
-    int min = p->root->getContentSize().width / 2;
-    int max = winSize.width - p->root->getContentSize().width / 2;
-	log("[%d, %d] x=%d y=%d", min, max, random(min, max), winSize.height + p->root->getContentSize().height / 2);
-	log("winsize [%d, %d]  content size [%d, %d]", winSize.width, winSize.height, p->root->getContentSize().width, p->root->getContentSize().height);
-    p->root->setPosition(Vec2(random(min, max), winSize.height + p->root->getContentSize().height / 2));
-	//enemy_plane->root->setPosition(Vec2(300, 400));
+    //int min = p->root->getContentSize().width / 2;
+    //int max = winSize.width - p->root->getContentSize().width / 2;
+	//log("[%d, %d] x=%d y=%d", min, max, random(min, max), winSize.height + p->root->getContentSize().height / 2);
+	//log("winsize [%d, %d]  content size [%d, %d]", winSize.width, winSize.height, p->root->getContentSize().width, p->root->getContentSize().height);
+    //p->root->setPosition(Vec2(random(min, max), winSize.height + p->root->getContentSize().height / 2));
+	enemy_plane->root->setPosition(Vec2(300, 400));
 
     //给敌机一个body
     Vec2 vec[10]; //存放敌方战机的多边形点
@@ -132,7 +133,8 @@ void NPC::spawnEnemy()
     enemybody->addShape(PhysicsShapePolygon::create(vec, vec_count));
     enemybody->setCollisionBitmask(0x0); //不进行碰撞模拟，因为不需要
     enemybody->setContactTestBitmask(GameScene::ENEMY_CONTACTMASKBIT);
-    p->root->setPhysicsBody(enemybody);
+    //p->root->setPhysicsBody(enemybody);
+	enemy_plane->setPhysicsBody(enemybody);
 }
 
 void* NPC::getParent()

@@ -3,13 +3,10 @@
 #pragma once
 
 class PlaneEnemy;
-class NPC 
-//	:
-//    public behaviac::Agent, 
-//	public Ref
+class NPC : public behaviac::Agent
 {
 public:
-	//BEHAVIAC_DECLARE_AGENTTYPE(NPC, behaviac::Agent);
+	BEHAVIAC_DECLARE_AGENTTYPE(NPC, behaviac::Agent);
 
     //typedef struct  refresh_delay
     //{
@@ -55,5 +52,6 @@ public:
 
     bool m_canBossRefresh;
     int m_level;
-	std::vector<int> delayTime;
+	behaviac::vector<int> delayTime;
+	//int delayTime;
 };

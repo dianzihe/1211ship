@@ -1,6 +1,7 @@
 #include "WHero.h"
 #include "WBullet.h"
 #include "WFadeOutHurtLabel.h"
+#include "WAnimationManager.h"
 //#include "animation.h"
 //#include "GameFrontLayer.h"
 //#include "ddd_global.h"
@@ -442,8 +443,8 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     WHero *lpHero=new WHero();
     lpHero->autorelease();
     
-    map<string,string> desc=WDDD_GLOBAL.m_aniManager.TransToAnimationDesc(strList);
-
+    //map<string,string> desc=WDDD_GLOBAL.m_aniManager.TransToAnimationDesc(strList);
+	map<string, string> desc;
     string iwco_name;
     
     lpHero->m_weaponType=weaponType;
@@ -455,12 +456,7 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     else
     {
          iwco_name=WANI_IWCO_BATTLEGIRL;
-    }
-    
-    
-    CCPoolManager::getInstance()->push();
-   
-        
+    }     
     
     //一般待机    
     WAnimationManager::addAnimationToCharater(iwco_name, "standby1", lpHero, WHero::DEF_NORMAL, desc,0.2,true);
@@ -476,26 +472,6 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
  
     //移动
     WAnimationManager::addAnimationToCharater(iwco_name, "move", lpHero, WHero::DEF_MOVE, desc,0.2,true);
- 
-
-		directions = [(0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (1, 1)]
-		for dc in xrange(len(directions)) :
-			d = directions[dc]
-			for i in xrange(11) :
-				if i == 10 :
-					key = ("idle", d)
-				else :
-				key = (i, d)
-				t = self.bigtexture.sub(32 * i, (256 - 32) - 32 * dc, 32, 32)
-				#print 32 * i, (512 - 32) - 32 * dc
-				self.images[key] = t
-
-
-    
-    CCPoolManager::getInstance()->pop();
-    
-    
-    CCPoolManager::getInstance()->push();
     
     //开始射击动画 
     if(weaponType==0) { 
@@ -505,24 +481,31 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
 			WHero::DEF_SHOOT_START, 
 			desc,
 			0.1,
-			true);}
-    else                          { WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-s", lpHero, WHero::DEF_SHOOT_START, desc,0.1,true);}
+			true);
+	}else{ 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-s", lpHero, WHero::DEF_SHOOT_START, desc,0.1,true);}
    
     
     //重复射击动画
-    if(weaponType==0) { WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-t2", lpHero, WHero::DEF_SHOOT_REPEAT, desc,0.1,true);}
-    else                          { WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-s2", lpHero, WHero::DEF_SHOOT_REPEAT, desc,0.1,true);}
+    if(weaponType==0) { 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-t2", lpHero, WHero::DEF_SHOOT_REPEAT, desc,0.1,true);}
+    else{ 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart1-s2", lpHero, WHero::DEF_SHOOT_REPEAT, desc,0.1,true);}
  
        
     //射击结束
-    if(weaponType==0) { WAnimationManager::addAnimationToCharater(iwco_name, "attack1-t", lpHero, WHero::DEF_SHOOT_END, desc,0.1,true);}
-    else                          { WAnimationManager::addAnimationToCharater(iwco_name, "attack1-s", lpHero, WHero::DEF_SHOOT_END, desc,0.1,true);}
+    if(weaponType==0) { 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attack1-t", lpHero, WHero::DEF_SHOOT_END, desc,0.1,true);}
+    else{ 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attack1-s", lpHero, WHero::DEF_SHOOT_END, desc,0.1,true);}
     
  
 
     //开始射击动画(大招)
-    if(weaponType==0) { WAnimationManager::addAnimationToCharater(iwco_name, "attackstart2-t", lpHero, WHero::DEF_SHOOT_BIG_START, desc,0.1,true);}
-    else                          { WAnimationManager::addAnimationToCharater(iwco_name, "attackstart2-s", lpHero, WHero::DEF_SHOOT_BIG_START, desc,0.1,true);}
+    if(weaponType==0) { 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart2-t", lpHero, WHero::DEF_SHOOT_BIG_START, desc,0.1,true);}
+    else{ 
+		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart2-s", lpHero, WHero::DEF_SHOOT_BIG_START, desc,0.1,true);}
     
 
     //重复射击动画(大招)
@@ -531,21 +514,12 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     else{ 
 		WAnimationManager::addAnimationToCharater(iwco_name, "attackstart2-s2", lpHero, WHero::DEF_SHOOT_BIG_REPEAT, desc,0.1,true);}
     
- 
-    
-  
-    
     //射击结束(大招)
     if(weaponType==0) { 
 		WAnimationManager::addAnimationToCharater(iwco_name, "attack2-t", lpHero, WHero::DEF_SHOOT_BIG_END, desc,0.1,true);}
     else{ 
 		WAnimationManager::addAnimationToCharater(iwco_name, "attack2-s", lpHero, WHero::DEF_SHOOT_BIG_END, desc,0.1,true);}
  
- 
-    
-    CCPoolManager::getInstance()->pop();
-    CCPoolManager::getInstance()->push();
-
     //鬼魂
     WAnimationManager::addAnimationToCharater(iwco_name, "ghost", lpHero, WHero::DEF_GHOST, desc,0.2);
     
@@ -580,19 +554,16 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     map<string,string> bulletDesc;
           
     bulletDesc.insert(pair<string,string>("weapon",weapon));
-    
+#if 0
     //使用的炮弹   
-    lpHero->m_BulletAni=cwSngAnimationPool::sharedAnimationPool()->animation(iwco_name, "fly1", bulletDesc);
+    lpHero->m_BulletAni=AnimationPool::sharedAnimationPool()->animation(iwco_name, "fly1", bulletDesc);
     lpHero->m_BulletAni->setDelay(0.1);
     lpHero->m_BulletAni->retain();   
   
     lpHero->m_BulletAniAngry=cwSngAnimationPool::sharedAnimationPool()->animation(iwco_name, "fly2", bulletDesc);
     lpHero->m_BulletAniAngry->setDelay(0.1);
     lpHero->m_BulletAniAngry->retain();   
-  
-    
-      
- 
+
   
     //爆炸后面的编号是'c'
     int pos=weapon.find_last_of('a');
@@ -604,16 +575,11 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     lpHero->m_BulletAniExplode->setDelay(0.1);
     lpHero->m_BulletAniExplode->retain();  
     
-    
-     CCPoolManager::getInstance()->pop();
-    CCPoolManager::getInstance()->push();
-   
-    
     //爆炸尾巴后面的编号是'b'
     pos=weapon.find_last_of('c');
     weapon.replace(pos, 1, 1,'b');
     bulletDesc["weapon"]=weapon;
-    
+#endif   
 //    pAniFrames=lpIwcoManager->GetAnimationFrames(lpIwcoManager->GetAnimation("locus"), bulletDesc, true);
 //    lpHero->m_BulletAniRear=WCharacter::AnimationWithWAnimationFrames(pAniFrames,0.15);
 //    lpHero->m_BulletAniRear->retain();   
@@ -641,7 +607,7 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
 //    lpIwcoManager->GetFrameImage(lpIwcoManager->GetIwco_frameFromIwcoAnimation(lpIwcoManager->GetAnimation("bombpattern"), 0), bulletDesc, true);
     
     lpHero->setAnimation(WHero::DEF_NORMAL);
-    
+#if 0   
     WBRect collisionRect;
     
     collisionRect.m_LeftTop.x=0;
@@ -649,7 +615,7 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     collisionRect.m_RightBottom.x=lpHero->getContentSizeInPixels().width;
     collisionRect.m_RightBottom.y=0;
     
-    
+
      //   collisionCircle.
     Vec2 achor(lpHero->getAnchorPointInPixels().x,lpHero->getAnchorPointInPixels().y);
     Vec2 center(0,20);//(lpHero->getContentSizeInPixels().width/2,lpHero->getContentSizeInPixels().height/2);
@@ -661,24 +627,22 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
    
     lpHero->setRadiusForHurtCheck(lpHero->getContentSizeInPixels().width/2*0.8);
     lpHero->setRadiusForBulletCollisionCheck(lpHero->getContentSizeInPixels().width/2*0.5);
-    
+#endif
     if(boyOrGirl==0)
     {
         iwco_name=WANI_IWCO_SHOPBOY;
-    }
-    else
-    {
+    }else{
         iwco_name=WANI_IWCO_SHOPGIRL;
     }
     
     desc.erase("weapon");
     
     //创建商城形象,用于大招
-    lpHero->m_lpSCCharacter=WShopCharacter::shopCharaWithDesc(desc, boyOrGirl);
-    lpHero->m_lpSCCharacter->retain();
+    //lpHero->m_lpSCCharacter=WShopCharacter::shopCharaWithDesc(desc, boyOrGirl);
+    //lpHero->m_lpSCCharacter->retain();
     
     
-    lpHero->m_lpPlayerIcon=Sprite::node();
+    lpHero->m_lpPlayerIcon=Sprite::create();
     lpHero->m_lpPlayerIcon->retain();
     desc.erase("weapon");
     desc.erase("bbody");
@@ -694,32 +658,30 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     }
     WAnimationManager::addAnimationToCharater(iwco_name, "standby1",lpHero->m_lpPlayerIcon, 0, desc,0.2,true);
   //  lpHero->m_lpPlayerIcon->setAnchorPoint(CCPointMake(0.5, 0.5));
- 
-    
     
     desc.clear();//不需要任何描述,都使用的默认
     
     //创建特效对象
+#if 0
     lpHero->m_lpSpecialEffect=Sprite::node();
     //lpHero->m_lpSpecialEffect->retain();
     lpHero->addChild(lpHero->m_lpSpecialEffect);
     lpHero->m_lpSpecialEffect->setIsVisible(false);//开始不用显示
     lpHero->m_lpSpecialEffect->setPosition(CCPointMake(lpHero->getAnchorPoint().x*lpHero->getContentSize().width, lpHero->getAnchorPoint().y*lpHero->getContentSize().height));
-   
+#endif
     iwco_name=WANI_IWCO_BATTLEEFFECT;
  
     WAnimationManager::addAnimationToCharater(iwco_name, "frozen1",lpHero->m_lpSpecialEffect, WHero::DEF_SE_FROZEN_1, desc,0.1);
-    
     WAnimationManager::addAnimationToCharater(iwco_name, "frozen3",lpHero->m_lpSpecialEffect, WHero::DEF_SE_FROZEN_2, desc,0.5);
     WAnimationManager::addAnimationToCharater(iwco_name, "use",lpHero->m_lpSpecialEffect, WHero::DEF_SE_USE_ITEM, desc,0.1);
     WAnimationManager::addAnimationToCharater(iwco_name, "blood",lpHero->m_lpSpecialEffect, WHero::DEF_SE_ADD_BLOOD, desc,0.1);
     WAnimationManager::addAnimationToCharater(iwco_name, "hide",lpHero->m_lpSpecialEffect, WHero::DEF_SE_HIDE, desc,0.1);
     WAnimationManager::addAnimationToCharater(iwco_name, "specialeffects1",lpHero->m_lpSpecialEffect, WHero::DEF_SE_BIGSKILL, desc,0.1);
     
+#if 0
     lpHero->m_lpSpecialEffect->setAnimation(WHero::DEF_SE_USE_ITEM);
-    // lpHero->m_lpSpecialEffect->PlayRepeat();
+	lpHero->m_lpSpecialEffect->PlayRepeat();
     lpHero->m_lpSpecialEffect->setIsVisible(false);//开始不用显示
-    
     
     lpHero->m_BulletAniFreezeExplode=cwSngAnimationPool::sharedAnimationPool()->animation(iwco_name, "frozen2", desc);
     lpHero->m_BulletAniFreezeExplode->setDelay(0.1);
@@ -731,17 +693,12 @@ WHero *WHero::BuildHero(const vector<string> &strList,int boyOrGirl, int weaponT
     lpHero->m_pAngryFire->setAnimation(0);
     lpHero->m_pAngryFire->setIsVisible(false);
     lpHero->m_pAngryFire->setPositionInPixels(lpHero->getAnchorPointInPixels());
-   lpHero->addChild(lpHero->m_pAngryFire,-1);
-    
+	lpHero->addChild(lpHero->m_pAngryFire,-1);
+#endif
     
   //   lpHero->addChild(CCSprite::node());
-  
-    
     lpHero->m_IsInit=true;
     
-    CCPoolManager::getInstance()->pop();
-
- 
 //    lpHero->m_emitter->retain();
 //	lpHero->addChild(lpHero->m_emitter, -10);
 //    
@@ -1953,7 +1910,7 @@ void WHero::st_normal()
         {
             st_normal_timer=rand()%20+10;
             setAnimation(DEF_NORMAL);
-            playRepeat();
+            //playRepeat();
         }
     }
     
@@ -2024,7 +1981,7 @@ void WHero::ShowSpecialEffect(int effect)
 }
 void WHero::setAnimation(int dwAniID){
 }
-void playRepeat(){}
+void WHero::playRepeat(){}
 
 void WHero::st_move()
 {

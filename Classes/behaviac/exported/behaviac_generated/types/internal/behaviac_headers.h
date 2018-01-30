@@ -8,6 +8,9 @@
 #include "behaviac/behaviac.h"
 
 // YOU SHOULD SET THE HEADER FILES OF YOUR GAME WHEN EXPORTING CPP FILES ON THE BEHAVIAC EDITOR:
+#include "../../../../../enemy.h"
+#include "../../../../../hero.h"
+#include "../../../../../NPC.h"
 
 #include "behaviac_customized_types.h"
 

@@ -10,7 +10,7 @@ Enemy::Enemy()
     //this->btsetcurrent("enemy_fsm");
     this->btload("enemy");
     this->btsetcurrent("enemy");
-	initSpeed = 20.0f;
+	speed = 20.0f;
 	m_init_speed[0] = 50;
 	m_init_speed[1] = 50;
 	m_init_speed[2] = 100;
@@ -40,7 +40,7 @@ void Enemy::setPlane(Node* plane)
 
 void Enemy::setSpeed(float speed)
 {
-	this->initSpeed = speed;//fix crash bug
+	this->speed = speed;//fix crash bug
     
     //if (this->m_plane)
     //{

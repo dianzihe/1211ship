@@ -187,3 +187,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/Debug.win32/exported.bak/meta/cocosfish.meta.xml
+/Debug.win32/MyCppGame.exe

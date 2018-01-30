@@ -33,12 +33,13 @@ private:
     PlaneEnemy* m_plane;
 
 public:
-    //float speed;
+    float speed;
 
 	float randomSpeed = 50.0;
 	int enemyType;
 
-	std::vector<float> m_init_speed;
+	behaviac::vector<float> m_init_speed;
 	
-	float initSpeed = .0;
+	//behaviac::vector<float> initSpeed ;
+	float initSpeed;
 };

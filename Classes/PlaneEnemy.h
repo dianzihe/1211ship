@@ -6,6 +6,7 @@
 #include "behaviac/agent/registermacros.h"
 
 #include "GameObject.h"
+#include "enemy.h"
 USING_NS_CC;
 class PlaneEnemy;
 //µĞ·½·É»úÀà

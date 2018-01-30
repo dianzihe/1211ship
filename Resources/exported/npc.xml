@@ -34,7 +34,7 @@
             <property ResultOption="BT_SUCCESS" />
           </node>
           <node class="WaitFrames" id="8">
-            <property Frames="int Self.NPC::delayTime[int Self.NPC::m_level]" />
+            <property Frames="const int 100" />
           </node>
         </node>
         <node class="Sequence" id="10">

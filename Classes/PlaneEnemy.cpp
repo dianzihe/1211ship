@@ -234,7 +234,12 @@ void PlaneEnemy::applyForce(Vec2 v)
 	printf("applyforce acceleration:[%f,%f]\n", v.x, v.y);
 	m_acceleration += v;
 }
+void PlaneEnemy::onEnter()
+{
+	Sprite::onEnter();
 
+	schedule(schedule_selector(PlaneEnemy::moveOn)); //战机进入后，开始移动
+}
 void PlaneEnemy::updatePosition(){
 
 	// move the fish
