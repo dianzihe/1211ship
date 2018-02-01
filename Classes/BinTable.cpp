@@ -47,16 +47,13 @@ bool _ReloadLocaledDataStr()
 		int size = 0;
 		memcpy( &size, buffer+pos, sizeof(int) );
 		pos += sizeof(int);
-		if( size > 0 )
-		{
+		if( size > 0 ){
 			char *pStr = new char[size+1];
 			memcpy( pStr, buffer+pos, sizeof(char)*size );
 			pStr[size] = '\0';
 			table.push_back( pStr );
 			SAFE_DELETE_ARRAY( pStr );
-		}
-		else
-		{
+		}else{
 			table.push_back( "" );
 		}
 		pos += size;
@@ -79,8 +76,7 @@ TTable*	getSingleGroupTable( const char* pszTableName )
 
 int splitString(const string& str, vector<string>& ret_, string sep)
 {
-	if (str.empty())
-	{
+	if (str.empty()){
 		return 0;
 	}
 
@@ -91,19 +87,15 @@ int splitString(const string& str, vector<string>& ret_, string sep)
 	while (pos_begin != string::npos)
 	{
 		comma_pos = str.find(sep, pos_begin);
-		if (comma_pos != string::npos)
-		{
+		if (comma_pos != string::npos){
 			tmp = str.substr(pos_begin, comma_pos - pos_begin);
 			pos_begin = comma_pos + sep.length();
-		}
-		else
-		{
+		}else{
 			tmp = str.substr(pos_begin);
 			pos_begin = comma_pos;
 		}
 
-		if (!tmp.empty())
-		{
+		if (!tmp.empty()){
 			ret_.push_back(tmp);
 			tmp.clear();
 		}
@@ -128,10 +120,8 @@ TTableGroup* BinTable::GetTalbeGroup( const string& fileName )
 {
 	static BinTable bin;
 
-	for (size_t i=0; i<bin.m_tableGroups.size(); i++)
-	{
-		if ( bin.m_tableGroups[i]->m_fileName == fileName )
-		{
+	for (size_t i=0; i<bin.m_tableGroups.size(); i++){
+		if ( bin.m_tableGroups[i]->m_fileName == fileName ){
 			return bin.m_tableGroups[i];
 		}
 	}
@@ -172,8 +162,7 @@ string TTable::GetFieldString( int id, int filedID )
 {
 	int data =  GetField(id, filedID);
 
-	if ( data > 0 )
-	{
+	if ( data > 0 ){
 		return m_tableGroup->m_strKey[data-1];	
 	}	
 
@@ -184,8 +173,7 @@ string TTable::GetFieldString( int id, const string& filedName )
 {
 	int data =  GetField(id, filedName);
 
-	if ( data > 0 )
-	{
+	if ( data > 0 ){
 		return m_tableGroup->m_strKey[data-1];	
 	}	
 
@@ -220,10 +208,9 @@ bool TTable::FindRecords( const string& filedName, int value, vector<int>& recor
 	if ( id < 0 ) return false;
 
 	int size = m_recordCount * m_filedCount;
-	for (int i=id; i<size; i+= m_filedCount )
+	for (int i = id; i < size; i += m_filedCount )
 	{
-		if ( m_data[i] == value )
-		{
+		if ( m_data[i] == value ){
 			records.push_back(i/m_filedCount + 1);
 		}
 	} 
@@ -237,12 +224,9 @@ int TTable::GetFiledIndex( const string& filedName )
 {
 	int id = m_tableGroup->GetStringKey(filedName);
 
-	if ( id > 0 )
-	{
-		for (int i=0; i<(int)m_fieldstrKey.size(); i++)
-		{
-			if ( m_fieldstrKey[i] == id )
-			{
+	if ( id > 0 ){
+		for (int i = 0; i < (int)m_fieldstrKey.size(); i++){
+			if ( m_fieldstrKey[i] == id ){
 				return i;
 			}
 		} 
@@ -258,10 +242,8 @@ TTable* TTableGroup::GetTable(int index)
 
 TTable* TTableGroup::GetTable(const string& tableName)
 {
-	for (size_t i=0; i<m_tables.size(); i++)
-	{
-		if ( m_tables[i]->m_name == tableName )
-		{
+	for (size_t i=0; i<m_tables.size(); i++){
+		if ( m_tables[i]->m_name == tableName ){
 			return m_tables[i];
 		}
 	}

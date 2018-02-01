@@ -305,7 +305,8 @@ bool GameScene::init()
 	//每隔5秒可以刷新一次boss战机
 	//schedule(schedule_selector(GameScene::resetBoss), 5.0f);
 #endif
-
+	
+	
 #if 1
 	// 初始化并绑定
 	auto listener = EventListenerKeyboard::create();
